@@ -19,14 +19,15 @@ def read_office_by_id(id):
 				json_data = line[line.find(TAG)+len(TAG):-len(TAG2)]
 				data = json.loads(json_data)
 				result = result + data['props']['pageProps']['office']['address']['fullAddress'] + '\n'
-				result = result + 'Праздники:\n'
-				for day in data['props']['pageProps']['office']['holidays']:
-					result = result + '{} - {}\n'.format(day['date'], weekdayid(day['weekDayId']))
+				result = result + 'Рабочие дни:\n'
 				for day in data['props']['pageProps']['office']['workingHours']:
 					if 'beginWorkTime' in day:
 						result = result + '{}: {}-{}\n'.format(weekdayid(day['weekDayId']), day['beginWorkTime'], day['endWorkTime'])
 					else:
 						result = result + '{}: выходной\n'.format(weekdayid(day['weekDayId']))
+				result = result + 'Праздники:\n'
+				for day in data['props']['pageProps']['office']['holidays']:
+					result = result + '{} - {}\n'.format(day['date'], weekdayid(day['weekDayId']))
 	except:
 		result = result + 'Ошибка!'
 	return result
