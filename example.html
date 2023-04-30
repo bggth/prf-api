@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <pre class="result"></pre>
+</body>
+<script>
+
+    window.onload = () => {
+
+        let result = document.querySelector('.result');
+        let id = 394000;
+
+        fetch('http://127.0.0.1:5000/offices/' + id)
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                result.textContent = data.result
+            });
+
+    }
+</script>
+</html>
